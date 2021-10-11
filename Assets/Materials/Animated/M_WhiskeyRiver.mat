@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_WhiskeyRiver
+  m_Shader: {fileID: -6465566751694194690, guid: 41153cda1420a8e41811e7d14693ae78,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_1145B6BE: 1
+    - Vector1_1AE1E2D7: 0.255
+    - Vector1_332C0ABE: 0.85
+    - Vector1_553688AC: 3
+    - Vector1_5905C094: 30
+    - Vector1_66280C3A: 0.8
+    - Vector1_6B8FE5BE: 0
+    - Vector1_6BBFE6E4: 1.5
+    - Vector1_745DC962: 50
+    - Vector1_A9B9DEC8: 0.2
+    - Vector1_AE4075F1: 1
+    - Vector1_C4596452: 0.04
+    - Vector1_E25E8B28: 0.047
+    - Vector1_E282401: 35
+    - Vector1_FCC6E57D: 1.78
+    m_Colors:
+    - Color_9AFECA11: {r: 1, g: 0.5988333, b: 0.17000002, a: 0}
+    - Color_B8EBAF1C: {r: 0.25261775, g: 0.17590661, b: 0.11771194, a: 0}
