@@ -24,10 +24,12 @@ public class PlaceContentOnImage : MonoBehaviour
     private GameObject _spawnObject;
 
     [Header("Plane Tracking")]
+    public GameObject ObjectToPlace;
     public bool isPlaneTracking = false;
 
     private ARPlaneManager _arPlaneManager;
     private ARRaycastManager _aRRaycastManager;
+    private TapToPlaceOnPlane _placeOnPlane;
 
 
     private void Awake()
@@ -56,37 +58,58 @@ public class PlaceContentOnImage : MonoBehaviour
         foreach (var newImage in eventArgs.added)
         {
             _spawnObject = Instantiate(ConfirmationObject, newImage.transform.position, newImage.transform.rotation);
+            _spawnObject.SetActive(false);
             // Start Plane tracking here
             startPlaneTracking();
         }
 
         foreach (var updatedImage in eventArgs.updated)
         {
-            if(updatedImage.trackingState == TrackingState.Tracking || updatedImage.trackingState == TrackingState.Limited)
+            if (_placeOnPlane.isObjectPlaced)
             {
-                if (!nextState)
-                {
-                    nextState = true;
-                    hideUI(ScanImageUI, () =>
-                    {
-                        showUI(TapImageUI);
-                    });
-                }
-
-                _spawnObject.transform.position = updatedImage.transform.position;
-                _spawnObject.transform.rotation = updatedImage.transform.rotation;
+                _spawnObject.SetActive(false);
+                ScanImageUI.gameObject.SetActive(false);
+                TapImageUI.gameObject.SetActive(false);
             }
             else
             {
-                if (nextState)
+                if (updatedImage.trackingState == TrackingState.Tracking)
                 {
-                    nextState = false;
-                    hideUI(TapImageUI, () =>
+                    if (!nextState)
                     {
-                        showUI(ScanImageUI);
-                    });
+                        nextState = true;
+                        hideUI(ScanImageUI, () =>
+                        {
+                            showUI(TapImageUI);
+                            _spawnObject.SetActive(true);
+                            _placeOnPlane.isTapToPlace = true;
+                        });
+                    }
+
+                    _spawnObject.transform.position = updatedImage.transform.position;
+                    _spawnObject.transform.rotation = updatedImage.transform.rotation;
+                }
+                else if (updatedImage.trackingState == TrackingState.Limited)
+                {
+                    if (nextState)
+                    {
+                        hideUI(TapImageUI, () =>
+                        {
+                            showUI(ScanImageUI);
+                            nextState = false;
+                            _placeOnPlane.isTapToPlace = false;
+                        });
+                    }
+
+                    _spawnObject.SetActive(false);
                 }
             }
+
+        }
+
+        foreach (var removedImage in eventArgs.removed)
+        {
+
         }
 
     }
@@ -94,14 +117,14 @@ public class PlaceContentOnImage : MonoBehaviour
     private void showUI(Transform uiScreen)
     {
         GameObject go = uiScreen.gameObject;
+        LeanTween.alphaCanvas(go.GetComponent<CanvasGroup>(), 1, 1.0f).setEase(LeanTweenType.linear);
         go.SetActive(true);
-        LeanTween.alphaCanvas(go.GetComponent<CanvasGroup>(), 1, 0.5f).setEase(LeanTweenType.linear);
     }
 
     private void hideUI(Transform uiScreen, Action callback)
     {
         GameObject go = uiScreen.gameObject;
-        LeanTween.alphaCanvas(go.GetComponent<CanvasGroup>(), 0, 0.5f).setEase(LeanTweenType.linear).setOnComplete( () =>
+        LeanTween.alphaCanvas(go.GetComponent<CanvasGroup>(), 0, 1.0f).setEase(LeanTweenType.linear).setOnComplete( () =>
         {
             go.SetActive(false);
             callback?.Invoke();
@@ -119,6 +142,10 @@ public class PlaceContentOnImage : MonoBehaviour
 
             _aRRaycastManager = ARSessionOrigin.gameObject.AddComponent<ARRaycastManager>();
             _aRRaycastManager.enabled = true;
+
+            _placeOnPlane = ARSessionOrigin.gameObject.AddComponent<TapToPlaceOnPlane>();
+            _placeOnPlane.ObjectToPlace = ObjectToPlace;
+            _placeOnPlane.enabled = true;
 
         }
     }

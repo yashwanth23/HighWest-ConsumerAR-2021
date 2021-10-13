@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
-  m_Name: ReferenceImageLibrary
+  m_Name: TargetImageLibrary
   m_EditorClassIdentifier: 
-  m_GuidLow: 4875841981246024839
-  m_GuidHigh: 18261535548134986419
+  m_GuidLow: 5678940732539282804
+  m_GuidHigh: 14016774675753222585
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5064305599474724603
-      m_GuidHigh: 18054691041706026624
+      m_GuidLow: 5425600777586412309
+      m_GuidHigh: 5309838373399666363
     m_SerializedTextureGuid:
       m_GuidLow: 12399552158901263549
       m_GuidHigh: 13820433992113037896
     m_Size: {x: 0.15, y: 0.15}
     m_SpecifySize: 1
-    m_Name: HW_Coaster
+    m_Name: HWCoaster
     m_Texture: {fileID: 0}

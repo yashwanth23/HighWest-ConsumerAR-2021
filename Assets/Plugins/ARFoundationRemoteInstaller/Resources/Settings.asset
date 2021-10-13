@@ -64,12 +64,12 @@ MonoBehaviour:
     modifyDisplayMatrix: 0
     displayMatrix:
       e00: 0
-      e01: 0
+      e01: 1
       e02: 0
       e03: 0
-      e10: 0
+      e10: -0.82580644
       e11: 0
-      e12: 0
+      e12: 0.9129032
       e13: 0
       e20: 0
       e21: 0
@@ -81,4 +81,5 @@ MonoBehaviour:
       e33: 0
     checkPackageVersions: 1
   port: 44819
-  embeddedImageLibraries: []
+  embeddedImageLibraries:
+  - {fileID: 11400000, guid: 35ba98b466e1b9048ae8b4c47b3a95b8, type: 2}
