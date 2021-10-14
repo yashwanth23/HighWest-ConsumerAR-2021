@@ -17,6 +17,7 @@ public class PlaceContentOnImage : MonoBehaviour
     public GameObject ConfirmationObject;
     public Transform ScanImageUI;
     public Transform TapImageUI;
+    public Transform ARUI;
 
 
     private ARTrackedImageManager _aRTrackedImageManager;
@@ -24,6 +25,7 @@ public class PlaceContentOnImage : MonoBehaviour
     private GameObject _spawnObject;
 
     [Header("Plane Tracking")]
+    public GameObject PlanePrefab;
     public GameObject ObjectToPlace;
     public bool isPlaneTracking = false;
 
@@ -39,14 +41,17 @@ public class PlaceContentOnImage : MonoBehaviour
 
         ScanImageUI.gameObject.SetActive(false);
         TapImageUI.gameObject.SetActive(false);
+        ARUI.gameObject.SetActive(false);
     }
     public void OnEnable()
     {
         _aRTrackedImageManager.trackedImagesChanged += OnImageChanged;
+        
     }
     public void OnDisable()
     {
         _aRTrackedImageManager.trackedImagesChanged -= OnImageChanged;
+        _placeOnPlane.objectPlaced -= OnARObjectPlaced;
     }
     private void Start()
     {
@@ -114,6 +119,11 @@ public class PlaceContentOnImage : MonoBehaviour
 
     }
 
+    private void OnARObjectPlaced()
+    {
+        showUI(ARUI);
+    }
+
     private void showUI(Transform uiScreen)
     {
         GameObject go = uiScreen.gameObject;
@@ -138,6 +148,7 @@ public class PlaceContentOnImage : MonoBehaviour
 
             _arPlaneManager = ARSessionOrigin.gameObject.AddComponent<ARPlaneManager>();
             _arPlaneManager.requestedDetectionMode = PlaneDetectionMode.Horizontal;
+            _arPlaneManager.planePrefab = PlanePrefab;
             _arPlaneManager.enabled = true;
 
             _aRRaycastManager = ARSessionOrigin.gameObject.AddComponent<ARRaycastManager>();
@@ -146,12 +157,25 @@ public class PlaceContentOnImage : MonoBehaviour
             _placeOnPlane = ARSessionOrigin.gameObject.AddComponent<TapToPlaceOnPlane>();
             _placeOnPlane.ObjectToPlace = ObjectToPlace;
             _placeOnPlane.enabled = true;
+            _placeOnPlane.objectPlaced += OnARObjectPlaced;
 
         }
     }
 
-    void Update()
+    public void RotateObject()
     {
-        
+        if(_placeOnPlane != null)
+        {
+            _placeOnPlane.SpawnedObject.transform.Rotate(Vector3.up, 20.0f * Time.deltaTime, Space.Self); 
+        }
+    }
+
+    public void ScaleObject(float value)
+    {
+        //Given that maximum scale factor we can is 0.5
+        float scaleFactor = 1.0f - 0.5f * value;
+
+        ARSessionOrigin.transform.localScale = Vector3.one * scaleFactor;
+        ARSessionOrigin.MakeContentAppearAt(_placeOnPlane.SpawnedObject.transform, _placeOnPlane.spawnedObjPosition);
     }
 }

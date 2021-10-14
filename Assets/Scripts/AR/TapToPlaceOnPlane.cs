@@ -14,12 +14,15 @@ public class TapToPlaceOnPlane : MonoBehaviour
     private ARRaycastManager _aRRaycastManager;
     
     private List<ARRaycastHit> arHits = new List<ARRaycastHit>();
-    private GameObject spawnedObject;
+    
 
     public GameObject ObjectToPlace;
+    public GameObject SpawnedObject;
     public bool isTapToPlace = false;
     public bool isObjectPlaced = false;
+    public Vector3 spawnedObjPosition;
 
+    public Action objectPlaced;
     private void Awake()
     {
         _aRPlaneManager = FindObjectOfType<ARPlaneManager>();
@@ -55,48 +58,41 @@ public class TapToPlaceOnPlane : MonoBehaviour
     {
         if (isTapToPlace)
         {
+            
 #if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePosition = Input.mousePosition;
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if(Physics.Raycast(ray, out hit, 100.0f))
-                {
-                    if (spawnedObject == null)
-                    {
-                        spawnedObject = Instantiate(ObjectToPlace, hit.transform.position, hit.transform.rotation);
-                        isObjectPlaced = true;
-                    }
-                }
+                OnTapToPlace(mousePosition);
             }
 
 #else
-        if(Input.touchCount > 0)
-        {
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.touchCount > 0)
             {
-                Vector2 touchPosition = Input.GetTouch(0).position;
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    Vector2 touchPosition = Input.GetTouch(0).position;
 
-                OnTapToPlace(touchPosition);
+                    OnTapToPlace(touchPosition);
+                }
             }
-
-        }
 #endif
         }
     }
 
-    public void OnTapToPlace(Vector2 touchPosition)
+    private void OnTapToPlace(Vector2 touchPosition)
     {
-        if (_aRRaycastManager.Raycast(touchPosition, arHits, TrackableType.PlaneWithinPolygon))
+        if (_aRRaycastManager.Raycast(touchPosition, arHits, TrackableType.Planes))
         {
             var hitPose = arHits[0].pose;
+            spawnedObjPosition = hitPose.position;
 
-            if (spawnedObject == null)
+            if (SpawnedObject == null)
             {
-                spawnedObject = Instantiate(ObjectToPlace, hitPose.position, hitPose.rotation);
+                SpawnedObject = Instantiate(ObjectToPlace, hitPose.position, hitPose.rotation);
                 isObjectPlaced = true;
+                objectPlaced?.Invoke();
             }
         }
     }

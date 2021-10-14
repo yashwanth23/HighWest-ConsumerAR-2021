@@ -237,12 +237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1440, y: 3200}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -520,7 +520,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1344156765}
+        m_TargetAssemblyTypeName: PlaceContentOnImage, Assembly-CSharp
+        m_MethodName: ScaleObject
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &410348684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,9 +1347,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ARSession: {fileID: 1424661423}
   ARSessionOrigin: {fileID: 1344156766}
-  ConfirmationObject: {fileID: 4141720185898054152, guid: f18105ce490f9574aaf07485d406b0e9, type: 3}
+  ConfirmationObject: {fileID: 2092390842528056916, guid: 3daf127e795a3be4fb25973df6cfbe5c, type: 3}
   ScanImageUI: {fileID: 183039220}
   TapImageUI: {fileID: 410348685}
+  ARUI: {fileID: 76570316}
+  PlanePrefab: {fileID: 1585201990951412, guid: 617b10198100d44078c5e70d97423117, type: 3}
   ObjectToPlace: {fileID: 1349287629751981016, guid: cbb0423a08399e94398d16c9361ab6c7, type: 3}
   isPlaneTracking: 0
 --- !u!114 &1344156766
@@ -1489,6 +1503,7 @@ GameObject:
   - component: {fileID: 1690220634}
   - component: {fileID: 1690220636}
   - component: {fileID: 1690220635}
+  - component: {fileID: 1690220637}
   m_Layer: 5
   m_Name: RotationButton
   m_TagString: Untagged
@@ -1553,6 +1568,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690220633}
   m_CullTransparentMesh: 1
+--- !u!114 &1690220637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690220633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7944534739e540478a4510727ecf919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLongClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1344156765}
+        m_TargetAssemblyTypeName: PlaceContentOnImage, Assembly-CSharp
+        m_MethodName: RotateObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1822822577
 GameObject:
   m_ObjectHideFlags: 0
