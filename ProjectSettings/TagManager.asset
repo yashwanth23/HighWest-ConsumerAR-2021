@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Main_scene
+  - RR
+  - CF
+  - AP
+  - DR
+  - Barrel_RR
+  - Barrel_CF
+  - Barrel_DR
+  - Barrel_AP
+  - RR_cowboy
   layers:
   - Default
   - TransparentFX
@@ -11,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Highlight Objects
   - 
   - 
   - 

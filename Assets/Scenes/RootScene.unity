@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: URP default Post-process volume
       objectReference: {fileID: 0}
+    - target: {fileID: 8265937803746286111, guid: 24faa00c3e1eca941972202261c9ed0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24faa00c3e1eca941972202261c9ed0c, type: 3}
 --- !u!1 &504647680
