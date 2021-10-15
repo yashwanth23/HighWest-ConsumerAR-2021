@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Waterfall
-  m_Shader: {fileID: -6465566751694194690, guid: 41153cda1420a8e41811e7d14693ae78,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 41153cda1420a8e41811e7d14693ae78, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,7 +18,20 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_1145B6BE: 0.1
     - Vector1_1AE1E2D7: 0.255
@@ -37,5 +49,6 @@ Material:
     - Vector1_E282401: 0
     - Vector1_FCC6E57D: 1.78
     m_Colors:
-    - Color_9AFECA11: {r: 0.15, g: 0.45750004, b: 0.6, a: 0}
+    - Color_9AFECA11: {r: 0.46094695, g: 0.6821963, b: 0.7830189, a: 0}
     - Color_B8EBAF1C: {r: 0.5568628, g: 0.72156864, b: 0.7529412, a: 0}
+  m_BuildTextureStacks: []
