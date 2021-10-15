@@ -90,9 +90,9 @@ public class PlaceContentOnImage : MonoBehaviour
                             _placeOnPlane.isTapToPlace = true;
                         });
                     }
-
-                    _spawnObject.transform.position = updatedImage.transform.position;
-                    _spawnObject.transform.rotation = updatedImage.transform.rotation;
+                    ARSessionOrigin.MakeContentAppearAt(_spawnObject.transform, updatedImage.transform.position);
+                    //_spawnObject.transform.position = updatedImage.transform.position;
+                    //_spawnObject.transform.rotation = updatedImage.transform.rotation;
                 }
                 else if (updatedImage.trackingState == TrackingState.Limited)
                 {
@@ -173,7 +173,7 @@ public class PlaceContentOnImage : MonoBehaviour
     public void ScaleObject(float value)
     {
         //Given that maximum scale factor we can is 0.5
-        float scaleFactor = 1.0f - 0.5f * value;
+        float scaleFactor = 1 - value;
 
         ARSessionOrigin.transform.localScale = Vector3.one * scaleFactor;
         ARSessionOrigin.MakeContentAppearAt(_placeOnPlane.SpawnedObject.transform, _placeOnPlane.spawnedObjPosition);

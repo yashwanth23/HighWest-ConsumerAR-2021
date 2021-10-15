@@ -86,11 +86,13 @@ public class TapToPlaceOnPlane : MonoBehaviour
         if (_aRRaycastManager.Raycast(touchPosition, arHits, TrackableType.Planes))
         {
             var hitPose = arHits[0].pose;
-            spawnedObjPosition = hitPose.position;
+            
 
             if (SpawnedObject == null)
             {
                 SpawnedObject = Instantiate(ObjectToPlace, hitPose.position, hitPose.rotation);
+                this.GetComponent<ARSessionOrigin>().MakeContentAppearAt(SpawnedObject.transform, hitPose.position);
+                spawnedObjPosition = SpawnedObject.transform.position;
                 isObjectPlaced = true;
                 objectPlaced?.Invoke();
             }
