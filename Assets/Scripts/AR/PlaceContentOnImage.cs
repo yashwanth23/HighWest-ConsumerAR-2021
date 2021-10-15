@@ -25,7 +25,7 @@ public class PlaceContentOnImage : MonoBehaviour
     private GameObject _spawnObject;
 
     [Header("Plane Tracking")]
-    public GameObject PlanePrefab;
+    //public GameObject PlanePrefab;
     public GameObject ObjectToPlace;
     public bool isPlaneTracking = false;
 
@@ -148,7 +148,7 @@ public class PlaceContentOnImage : MonoBehaviour
 
             _arPlaneManager = ARSessionOrigin.gameObject.AddComponent<ARPlaneManager>();
             _arPlaneManager.requestedDetectionMode = PlaneDetectionMode.Horizontal;
-            _arPlaneManager.planePrefab = PlanePrefab;
+            //_arPlaneManager.planePrefab = PlanePrefab;
             _arPlaneManager.enabled = true;
 
             _aRRaycastManager = ARSessionOrigin.gameObject.AddComponent<ARRaycastManager>();
