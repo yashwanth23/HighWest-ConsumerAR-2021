@@ -12,6 +12,7 @@ public class PlaceContentOnImage : MonoBehaviour
     [Header("AR Session")]
     public ARSession ARSession;
     public ARSessionOrigin ARSessionOrigin;
+    public static float ARSessionScaleFactor = 4.0f;
 
     [Header("Image Tracking")]
     public GameObject ConfirmationObject;
@@ -42,6 +43,8 @@ public class PlaceContentOnImage : MonoBehaviour
         ScanImageUI.gameObject.SetActive(false);
         TapImageUI.gameObject.SetActive(false);
         ARUI.gameObject.SetActive(false);
+
+        
     }
     public void OnEnable()
     {
@@ -173,7 +176,7 @@ public class PlaceContentOnImage : MonoBehaviour
     public void ScaleObject(float value)
     {
         //Given that maximum scale factor we can is 0.5
-        float scaleFactor = 1 - value;
+        float scaleFactor = ARSessionScaleFactor * (1 - value);
 
         ARSessionOrigin.transform.localScale = Vector3.one * scaleFactor;
         ARSessionOrigin.MakeContentAppearAt(_placeOnPlane.SpawnedObject.transform, _placeOnPlane.spawnedObjPosition);

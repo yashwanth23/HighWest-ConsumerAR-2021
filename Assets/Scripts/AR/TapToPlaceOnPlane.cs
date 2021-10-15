@@ -91,7 +91,12 @@ public class TapToPlaceOnPlane : MonoBehaviour
             if (SpawnedObject == null)
             {
                 SpawnedObject = Instantiate(ObjectToPlace, hitPose.position, hitPose.rotation);
-                this.GetComponent<ARSessionOrigin>().MakeContentAppearAt(SpawnedObject.transform, hitPose.position);
+                if (this.GetComponent<ARSessionOrigin>() != null)
+                {
+                    this.GetComponent<ARSessionOrigin>().transform.localScale = Vector3.one * PlaceContentOnImage.ARSessionScaleFactor;
+                    this.GetComponent<ARSessionOrigin>().MakeContentAppearAt(SpawnedObject.transform, hitPose.position);
+                }
+                
                 spawnedObjPosition = SpawnedObject.transform.position;
                 isObjectPlaced = true;
                 objectPlaced?.Invoke();
