@@ -9,7 +9,8 @@ public class HighlightObject : MonoBehaviour
 
     private int layerMask;
     private bool isHighlight;
-    private int selectedCharacter;
+
+    public static int selectedCharacter;
 
     private GameObject highlightedBarrel;
     // Start is called before the first frame update

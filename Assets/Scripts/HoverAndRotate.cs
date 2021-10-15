@@ -10,11 +10,11 @@ public class HoverAndRotate : MonoBehaviour
     private Vector3 initialPos;
     void Start()
     {
-        initialPos = transform.position;
+        initialPos = transform.localPosition;
     }
     void Update()
     {
-        transform.position = initialPos + hoverMagnitude * Vector3.up * Mathf.Cos(2*Time.time);
+        transform.localPosition = initialPos + hoverMagnitude * Vector3.up * Mathf.Cos(2*Time.time);
         transform.Rotate(Vector3.up, RotationSpeed * Time.deltaTime, Space.Self);
     }
 }
