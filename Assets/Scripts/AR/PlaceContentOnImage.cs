@@ -81,6 +81,8 @@ public class PlaceContentOnImage : MonoBehaviour
             }
             else
             {
+
+#if UNITY_ANDROID
                 if (updatedImage.trackingState == TrackingState.Tracking)
                 {
                     if (!nextState)
@@ -111,6 +113,22 @@ public class PlaceContentOnImage : MonoBehaviour
 
                     _spawnObject.SetActive(false);
                 }
+#endif
+
+#if UNITY_IOS
+                if (!nextState)
+                {
+                    nextState = true;
+                    hideUI(ScanImageUI, () =>
+                    {
+                        showUI(TapImageUI);
+                        _spawnObject.SetActive(true);
+                        _placeOnPlane.isTapToPlace = true;
+                    });
+                }
+                ARSessionOrigin.MakeContentAppearAt(_spawnObject.transform, updatedImage.transform.position);
+
+#endif
             }
 
         }
