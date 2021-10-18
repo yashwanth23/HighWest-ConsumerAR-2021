@@ -151,7 +151,7 @@ PlayerSettings:
     iPhone: com.Yash.HighWestAR-2021
   buildNumber:
     Standalone: 1
-    iPhone: 7
+    iPhone: 8
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
