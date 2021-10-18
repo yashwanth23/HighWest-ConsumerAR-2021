@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8265937803746286106}
   - component: {fileID: 8265937803746286104}
-  m_Layer: 0
-  m_Name: Post-process Volume
+  m_Layer: 7
+  m_Name: URP default Post-process volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,4 +47,4 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: db80426525847c448bd3ce3875ad49e9, type: 2}

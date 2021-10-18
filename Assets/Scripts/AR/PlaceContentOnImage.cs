@@ -142,7 +142,10 @@ public class PlaceContentOnImage : MonoBehaviour
 
     private void OnARObjectPlaced()
     {
-        showUI(ARUI);
+        hideUI(TapImageUI, () =>
+        {
+            showUI(ARUI);
+        });
     }
 
     private void showUI(Transform uiScreen)
